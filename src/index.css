@@ -1360,4 +1360,117 @@ header, nav, button {
   transform: translateY(-1px);
 }
 
+/* ── Radar Scanner Animations (ScanningScreen) ────────────────────────── */
+.radar-sweep {
+  transform-origin: 160px 160px;
+  animation: radar-sweep-rotate 2.4s linear infinite;
+}
+
+@keyframes radar-sweep-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-ring-clockwise {
+  transform-origin: 160px 160px;
+  animation: radar-ring-cw 10s linear infinite;
+}
+
+@keyframes radar-ring-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-ring-counter {
+  transform-origin: 160px 160px;
+  animation: radar-ring-ccw 7s linear infinite;
+}
+
+@keyframes radar-ring-ccw {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* Waveform Equalizer Animations */
+.wave-bar {
+  border-radius: 9999px;
+  transform-origin: center bottom;
+  animation: wave-bar-pulse 1.2s ease-in-out infinite alternate;
+}
+
+.wave-bar-1 { animation-delay: 0.05s; animation-duration: 0.75s; }
+.wave-bar-2 { animation-delay: 0.25s; animation-duration: 1.05s; }
+.wave-bar-3 { animation-delay: 0.1s; animation-duration: 0.85s; }
+.wave-bar-4 { animation-delay: 0.35s; animation-duration: 1.25s; }
+.wave-bar-5 { animation-delay: 0.18s; animation-duration: 0.95s; }
+.wave-bar-6 { animation-delay: 0.45s; animation-duration: 0.8s; }
+.wave-bar-7 { animation-delay: 0.12s; animation-duration: 1.1s; }
+
+@keyframes wave-bar-pulse {
+  0% {
+    transform: scaleY(0.25);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.75;
+  }
+}
+
+.animate-bounce-dot {
+  animation: bounce-dot 1.2s infinite ease-in-out;
+}
+.animate-bounce-dot:nth-child(1) { animation-delay: -0.32s; }
+.animate-bounce-dot:nth-child(2) { animation-delay: -0.16s; }
+.animate-bounce-dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: scale(0.5); opacity: 0.3; }
+  40% { transform: scale(1.25); opacity: 1; }
+}
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 480px) {
+  .responsive-2col-grid {
+    gap: 0.85rem !important;
+  }
+
+  .font-headline-hero {
+    font-size: 1.65rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .responsive-numeric-xl {
+    font-size: 1.75rem !important;
+  }
+
+  /* Prevent button touch clipping on compact phones */
+  .deep-scan-cta-btn {
+    min-height: 48px !important;
+    font-size: 12.5px !important;
+  }
+
+  .score-gauge {
+    padding: 0.75rem 1rem !important;
+    font-size: 1.05rem !important;
+  }
+}
+
+
 

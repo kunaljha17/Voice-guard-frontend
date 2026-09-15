@@ -1,4 +1,5 @@
 import { useRef, useState, useCallback, useEffect } from 'react';
+import { getWsUrl } from '../api/client';
 
 /**
  * useLiveDetection Hook
@@ -104,14 +105,7 @@ export function useLiveDetection() {
       streamRef.current = stream;
 
       // 2. Connect to WebSocket route (/live-detect)
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const defaultHost = window.location.host || 'localhost:5173';
-      // In dev with Vite proxy or direct Node backend
-      let wsUrl = `${protocol}//${defaultHost}/live-detect`;
-      if (window.location.port === '5173') {
-        // Direct to backend if proxy not available
-        wsUrl = `ws://localhost:5000/live-detect`;
-      }
+      const wsUrl = getWsUrl('/live-detect');
 
       const ws = new WebSocket(wsUrl);
       wsRef.current = ws;

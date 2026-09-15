@@ -20,7 +20,7 @@ import { LoadingScreen } from './components/LoadingScreen';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { useAuth } from './context/AuthContext';
-import { fetchScans, updateSettings, fetchMe } from './api/client';
+import { fetchScans, updateSettings, fetchMe, API_BASE } from './api/client';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -62,7 +62,7 @@ function MainApp() {
 
       let data = null;
       if (formData.has('file')) {
-        const res = await fetch('/api/analyze', {
+        const res = await fetch(`${API_BASE}/api/analyze`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${localStorage.getItem('voiceguard_token') || ''}`,
@@ -76,7 +76,7 @@ function MainApp() {
           console.error('❌ [VoiceGuard API Error]:', res.status, errData);
         }
       } else if (target.base64) {
-        const res = await fetch('/api/analyze', {
+        const res = await fetch(`${API_BASE}/api/analyze`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

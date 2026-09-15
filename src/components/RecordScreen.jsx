@@ -8,6 +8,7 @@ import {
   audioBufferToWavBlob,
 } from '../utils/audioHelper';
 import { LiveDetectPanel } from './LiveDetectPanel';
+import { API_BASE } from '../api/client';
 
 
 export const RecordScreen = ({
@@ -725,7 +726,7 @@ export const RecordScreen = ({
     setTranscribeError(null);
 
     try {
-      const res = await fetch('/api/transcribe', {
+      const res = await fetch(`${API_BASE}/api/transcribe`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { fetchTranscripts, saveTranscript } from '../api/client';
+import { fetchTranscripts, saveTranscript, API_BASE } from '../api/client';
 
 // Built-in speech audio benchmarks for instant testing
 const DEMO_AUDIO_PRESETS = [
@@ -309,7 +309,7 @@ export const TranscribeScreen = ({
     setTranscriptResult('');
 
     try {
-      const response = await fetch('/api/transcribe', {
+      const response = await fetch(`${API_BASE}/api/transcribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

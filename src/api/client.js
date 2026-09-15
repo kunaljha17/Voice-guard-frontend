@@ -1,6 +1,20 @@
 import axios from 'axios';
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+export const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+
+export function getWsUrl(path = '/live-detect') {
+  if (API_BASE) {
+    const wsProto = API_BASE.startsWith('https') ? 'wss:' : 'ws:';
+    const host = API_BASE.replace(/^https?:\/\//, '');
+    return `${wsProto}//${host}${path}`;
+  }
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const defaultHost = window.location.host || 'localhost:5173';
+  if (window.location.port === '5173') {
+    return `ws://localhost:5000${path}`;
+  }
+  return `${protocol}//${defaultHost}${path}`;
+}
 
 const api = axios.create({
   baseURL: `${API_BASE}/api`,

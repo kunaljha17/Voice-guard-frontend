@@ -1,3 +1,5 @@
+import { API_BASE } from '../api/client.js';
+
 /**
  * VoiceGuard Audio Utility
  * Provides audio playback management, temporary cloud/server storage,
@@ -32,7 +34,7 @@ export async function uploadAudioTemporary(fileOrBlob, preferredName) {
       (fileOrBlob instanceof File ? fileOrBlob.name : `audio_recording_${Date.now()}${defaultExt}`);
     formData.append('file', fileOrBlob, filename);
 
-    const response = await fetch('/api/upload-temp', {
+    const response = await fetch(`${API_BASE}/api/upload-temp`, {
       method: 'POST',
       body: formData,
     });
@@ -40,9 +42,13 @@ export async function uploadAudioTemporary(fileOrBlob, preferredName) {
     if (response.ok) {
       const data = await response.json();
       console.log('☁️ [AudioHelper] /api/upload-temp response:', data);
+      let fullAudioUrl = data.audioUrl;
+      if (fullAudioUrl && fullAudioUrl.startsWith('/') && API_BASE) {
+        fullAudioUrl = `${API_BASE}${fullAudioUrl}`;
+      }
       return {
         success: true,
-        audioUrl: data.audioUrl,
+        audioUrl: fullAudioUrl,
         audioId: data.audioId,
         filename: data.filename || filename,
         size: data.size,
