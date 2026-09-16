@@ -44,7 +44,7 @@ export const HomeScreen = ({ scans, onNavigate, onSelectScan }) => {
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1 text-info">
                 <span className="material-symbols-outlined text-18">verified_user</span>
-                <span className="font-label-sm text-11 font-semibold font-mono">99.4% Accuracy</span>
+                <span className="font-label-sm text-11 font-semibold font-mono">91.2% Accuracy</span>
               </div>
               <div className="hidden sm:flex items-center gap-1 text-accent">
                 <span className="material-symbols-outlined text-18">bolt</span>
