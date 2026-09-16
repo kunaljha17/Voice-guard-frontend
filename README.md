@@ -15,7 +15,7 @@
 
 ### 🔗 Cross-Repository Navigation
 - **Looking for the Node.js Gateway & PyTorch Inference Engine?**  
-  👉 **[Explore Backend Documentation & ML Architecture](../backend/README.md)**
+  👉 **[Explore Backend Documentation & ML Architecture](https://github.com/kunaljha17/Voice-guard-backend.git)**
 
 ---
 
